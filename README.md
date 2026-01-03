@@ -14,6 +14,7 @@
   Create Database
   ```
 ### Configure Jar file run as service in linux
+  - install java on linux server ( sudo apt install openjdk-xx-jdk ) xx = java version Ex: openjdk-21-jdk
   - upload jar file to linux server
   - Create Service File to run jar file ( sudo nano /etc/systemd/system/spring_boot.service ) 
   - if spring boot has image upload to /opt/myApp/static
