@@ -1,4 +1,4 @@
-# Hosting Spring boot project
+# Hosting Spring boot + Swagger project
 ## Software requirement 
   - Nginx ( reverse proxy )
   - Mysql or Other database base on project
