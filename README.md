@@ -14,10 +14,10 @@
   Create Database
   ```
 ### Configure Jar file run as service in linux
-  - install java on linux server ( sudo apt install openjdk-xx-jdk ) xx = java version Ex: openjdk-21-jdk
+  - install java on linux server ( ``` sudo apt install openjdk-xx-jdk ```) # xx = java version Ex: openjdk-21-jdk
   - upload jar file to linux server
-  - Create Service File to run jar file ( sudo nano /etc/systemd/system/spring_boot.service ) 
-  - if spring boot has image upload to /opt/myApp/static
+  - Create Service File to run jar file ( ``` sudo nano /etc/systemd/system/spring_boot.service ``` ) 
+  - **if spring boot has image upload to /opt/myApp/static**
     ```
       [Unit]
         Description =Java Spring Boot App
@@ -34,7 +34,7 @@
       [Install]
         WantedBy=multi-user.target
     ```
-  - if spring boot has image upload the same folder jar file
+  - **if spring boot has image upload the same folder jar file**
     ```
       [Unit]
         Description =Java Spring Boot App
@@ -62,8 +62,8 @@
   sudo apt update
   sudo apt install nginx -y
   ```
-- create file for nginx hosting ( sudo nano /etc/nginx/site-available/spring_boot.conf )
-  - if spring boot has image upload to /opt/myApp/static
+- create file for nginx hosting ( ``` sudo nano /etc/nginx/site-available/spring_boot.conf ``` )
+  - **if spring boot has image upload to /opt/myApp/static**
     ```
         server {
             listen 443 ssl;
@@ -95,7 +95,7 @@
             }
         }
     ```
-  - if spring boot has image upload the same folder jar file
+  - **if spring boot has image upload the same folder jar file**
     ```
              server {
             listen 443 ssl;
