@@ -8,7 +8,7 @@
 ## Software requirement 
   - Nginx ( reverse proxy )
   - Mysql or Other database base on project
-  - openjkd-21-jdk ( base on project requirement )
+  - openjdk-21-jdk ( base on project requirement )
 ## Setup 
 ### install mysql-server and Create DB for Spring boot
   ```
