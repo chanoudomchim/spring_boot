@@ -51,7 +51,7 @@
     ```
   - Relaod systemd and start spring boot service
       ```
-      sudo systemctl daemond-reload
+      sudo systemctl daemon-reload
       sudo systemctl enable spring_boot.service
       sudo systemctl start spring_boot.service
       sudo systemctl status spring_boot.service
