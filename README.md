@@ -16,17 +16,17 @@
 ### Configure Jar file run as service in linux
   - upload jar file to linux server
   - Create Service File to run jar file
-  - if spring boot has image upload to the same directory of jar file
+  - if spring boot has image upload to /opt/myApp/static
     ```
       [Unit]
         Description =Java Spring Boot App
         After=network.target
       [Service]
         User=ubuntu
-        WorkingDirectory=/home/ubuntu/java_api
+        WorkingDirectory=/home/ubuntu/java_api ( replace your jar folder )
         PermissionsStartOnly=true
         ExecStartPre=/bin/mkdir -p /opt/myApp/static
-        ExecStartPre=/bin/chown -R ubuntu:ubuntu /opt/myApp
+        ExecStartPre=/bin/chown -R username:username /opt/myApp ( replace username with your user )
         ExecStartPre=/bin/chmod -R 755 /opt/myApp
         ExecStart=java -jar api.jar
         Restart = always
