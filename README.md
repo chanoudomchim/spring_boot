@@ -5,6 +5,7 @@
   - openjkd-21-jdk ( base on project requirement )
 ## Setup 
 ### install mysql-server
+  ```
   sudo apt update
   sudo apt install mysql-server -y
-
+```
