@@ -23,11 +23,11 @@
         Description =Java Spring Boot App
         After=network.target
       [Service]
-        User=ubuntu ( can change to user your wnat to run spring boot with )
-        WorkingDirectory=/home/ubuntu/java_api ( replace your jar directory )
+        User=ubuntu #( can change to user your wnat to run spring boot with )
+        WorkingDirectory=/home/ubuntu/java_api #( replace your jar directory )
         PermissionsStartOnly=true
         ExecStartPre=/bin/mkdir -p /opt/myApp/static
-        ExecStartPre=/bin/chown -R username:username /opt/myApp ( replace username with your user )
+        ExecStartPre=/bin/chown -R username:username /opt/myApp #( replace username with your user )
         ExecStartPre=/bin/chmod -R 755 /opt/myApp
         ExecStart=java -jar api.jar
         Restart = always
@@ -40,9 +40,9 @@
         Description =Java Spring Boot App
         After=network.target
       [Service]
-        User=ubuntu ( can change to user your wnat to run spring boot with )
-        WorkingDirectory=/home/ubuntu/java_api ( replace your jar directory )
-        ExecStartPre=/bin/mkdir -p /home/ubuntu/java_api/myApp/static ( replace your jar directory )
+        User=ubuntu #( can change to user your wnat to run spring boot with )
+        WorkingDirectory=/home/ubuntu/java_api #( replace your jar directory )
+        ExecStartPre=/bin/mkdir -p /home/ubuntu/java_api/myApp/static #( replace your jar directory )
         ExecStartPre=/bin/chmod -R 775 /home/ubuntu
         ExecStart=java -jar api.jar
         Restart = always
@@ -67,10 +67,10 @@
     ```
         server {
             listen 443 ssl;
-            server_name cors.setecist.uk; ( replace your own domain name or Server ip )
+            server_name cors.setecist.uk; #( replace your own domain name or Server ip )
         
-            ssl_certificate /etc/ssl/cf/certificate.pem; ( replace your ssl certificate path )
-            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; ( replace your ssl certificate key path )
+            ssl_certificate /etc/ssl/cf/certificate.pem; #( replace your ssl certificate path )
+            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; #( replace your ssl certificate key path )
             location ^~ /static/ {
                 alias /opt/myApp/static;
                 autoindex off;
@@ -99,12 +99,12 @@
     ```
              server {
             listen 443 ssl;
-            server_name cors.setecist.uk;  ( replace your own domain name or Server ip )
+            server_name cors.setecist.uk;  #( replace your own domain name or Server ip )
         
-            ssl_certificate /etc/ssl/cf/certificate.pem; ( replace your ssl certificate path )
-            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; ( replace your ssl certificate key path )
+            ssl_certificate /etc/ssl/cf/certificate.pem; #( replace your ssl certificate path )
+            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; #( replace your ssl certificate key path )
             location ^~ /static/ {
-                alias /home/ubuntu/java_api/myApp/static/; ( replace your current directory )
+                alias /home/ubuntu/java_api/myApp/static/; #( replace your current directory )
                 autoindex off;
                 expires 30d;
                 add_header Cache-Control "public";
