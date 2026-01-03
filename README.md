@@ -15,7 +15,7 @@
   ```
 ### Configure Jar file run as service in linux
   - upload jar file to linux server
-  - Create Service File to run jar file
+  - Create Service File to run jar file ( sudo nano /etc/systemd/system/spring_boot.service ) 
   - if spring boot has image upload to /opt/myApp/static
     ```
       [Unit]
@@ -42,10 +42,16 @@
         User=ubuntu ( can change to user your wnat to run spring boot with )
         WorkingDirectory=/home/ubuntu/java_api ( replace your jar directory )
         ExecStartPre=/bin/mkdir -p /home/ubuntu/java_api/myApp/static ( replace your jar directory )
-        ExecStartPre=/bin/chmod -R 775 /opt/myApp
+        ExecStartPre=/bin/chmod -R 775 /home/ubuntu
         ExecStart=java -jar api.jar
         Restart = always
       [Install]
         WantedBy=multi-user.target
     ```
-
+    - Relaod systemd and start spring boot service
+      ```
+      sudo systemctl daemond-reload
+      sudo systemctl enable spring_boot.service
+      sudo systemctl start spring_boot.service
+      sudo systemctl status spring_boot.service
+      ```
