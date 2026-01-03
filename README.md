@@ -19,18 +19,18 @@
   - if spring boot has image upload to the same directory of jar file
     ```
       [Unit]
-      Description =Java Spring Boot App
-      After=network.target
+        Description =Java Spring Boot App
+        After=network.target
       [Service]
-      User=ubuntu
-      WorkingDirectory=/home/ubuntu/java_api
-      PermissionsStartOnly=true
-      ExecStartPre=/bin/mkdir -p /opt/myApp/static
-      ExecStartPre=/bin/chown -R ubuntu:ubuntu /opt/myApp
-      ExecStartPre=/bin/chmod -R 755 /opt/myApp
-      ExecStart=java -jar api.jar
-      Restart = always
+        User=ubuntu
+        WorkingDirectory=/home/ubuntu/java_api
+        PermissionsStartOnly=true
+        ExecStartPre=/bin/mkdir -p /opt/myApp/static
+        ExecStartPre=/bin/chown -R ubuntu:ubuntu /opt/myApp
+        ExecStartPre=/bin/chmod -R 755 /opt/myApp
+        ExecStart=java -jar api.jar
+        Restart = always
       [Install]
-      WantedBy=multi-user.target
+        WantedBy=multi-user.target
   
 
