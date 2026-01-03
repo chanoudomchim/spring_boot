@@ -33,7 +33,7 @@
       [Install]
         WantedBy=multi-user.target
     ```
-      - if spring boot has image upload the same folder jar file
+  - if spring boot has image upload the same folder jar file
     ```
       [Unit]
         Description =Java Spring Boot App
@@ -48,10 +48,82 @@
       [Install]
         WantedBy=multi-user.target
     ```
-    - Relaod systemd and start spring boot service
+  - Relaod systemd and start spring boot service
       ```
       sudo systemctl daemond-reload
       sudo systemctl enable spring_boot.service
       sudo systemctl start spring_boot.service
       sudo systemctl status spring_boot.service
       ```
+   - test access spring boot + swagger via http://serverip:8080/swagger-ui/index.html
+### Install nginx and configure
+   ```
+  sudo apt update
+  sudo apt install nginx -y
+  ```
+- create file for nginx hosting ( sudo nano /etc/nginx/site-available/spring_boot.conf )
+  - if spring boot has image upload to /opt/myApp/static
+    ```
+        server {
+            listen 443 ssl;
+            server_name cors.setecist.uk; ( replace your own domain name or Server ip )
+        
+            ssl_certificate /etc/ssl/cf/certificate.pem; ( replace your ssl certificate path )
+            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; ( replace your ssl certificate key path )
+            location ^~ /static/ {
+                alias /opt/myApp/static;
+                autoindex off;
+                expires 30d;
+                add_header Cache-Control "public";
+                add_header Access-Control-Allow-Origin *;
+                try_files $uri =404;
+            }
+        
+            location = / {
+                return 301 /swagger-ui/index.html;
+            }
+        
+            location / {
+                proxy_pass http://127.0.0.1:8080;
+        
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto https;
+                proxy_set_header X-Forwarded-Port 443;
+            }
+        }
+    ```
+  - if spring boot has image upload the same folder jar file
+    ```
+             server {
+            listen 443 ssl;
+            server_name cors.setecist.uk;  ( replace your own domain name or Server ip )
+        
+            ssl_certificate /etc/ssl/cf/certificate.pem; ( replace your ssl certificate path )
+            ssl_certificate_key /etc/ssl/cf/certificatekey.pem; ( replace your ssl certificate key path )
+            location ^~ /static/ {
+                alias /home/ubuntu/java_api/myApp/static/; ( replace your current directory )
+                autoindex off;
+                expires 30d;
+                add_header Cache-Control "public";
+                add_header Access-Control-Allow-Origin *;
+                try_files $uri =404;
+            }
+        
+            location = / {
+                return 301 /swagger-ui/index.html;
+            }
+        
+            location / {
+                proxy_pass http://127.0.0.1:8080;
+        
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto https;
+                proxy_set_header X-Forwarded-Port 443;
+            }
+        }
+    ```
+    
