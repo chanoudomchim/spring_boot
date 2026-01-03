@@ -1,4 +1,10 @@
 # Hosting Spring boot + Swagger project
+## Project properties
+  - Database name : dbsu413
+    - Database user : root
+    - Database password  : 12345
+  - Image location is the same with file jar directory
+-------------------------------------------------------------------------
 ## Software requirement 
   - Nginx ( reverse proxy )
   - Mysql or Other database base on project
